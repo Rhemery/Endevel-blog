@@ -1,0 +1,77 @@
+@import './base.css';
+@import "materialize-css/sass/components/color-variables";
+$primary-color: black !default;
+$secondary-color: rgb(22, 22, 22) !default;
+$primary-link-color: rgb(64, 54, 99) !default;
+$secondary-link-color: rgba(64, 54, 99, 0.199) !default;
+$primary-text-color: white !default;
+$primary-text-color-disabled: rgb(77, 77, 77) !default;
+$primary-border-color: rgb(97, 97, 97) !default;
+$button-disabled-color: rgb(0, 0, 0) !default;
+$button-disabled-background: rgb(85, 85, 85) !default;
+@import 'materialize-css/sass/materialize';
+
+
+.card {
+  border-radius: 8px;
+}
+
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+
+  li.active {
+    color: #ffffff;
+    &:hover {
+      background-color: #000000;
+      cursor: pointer;
+    }
+  }
+  li > a {
+    display: inline-block;
+    font-size: 1.2rem;
+    padding: 0 10px;
+    line-height: 30px;
+  }
+
+  li:not(.active):not(.disabled):hover {
+    background-color: #eeeeee;
+    cursor: pointer;
+  }
+
+  li:not(.active) > a:hover > i {
+    background-color: #ffffff00;
+  }
+}
+
+.pagination li.disabled div {
+  cursor: default;
+  color: #999;
+}
+
+.hide-page {
+  display: none;
+}
+
+.loader {
+  border: 10px solid #c9c9c9;
+  border-top: 10px solid #3498db;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  margin: auto;
+  margin-top: 5rem;
+  animation: spin 0.25s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

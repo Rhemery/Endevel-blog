@@ -10,6 +10,10 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "jquery": "^3.7.0",
+    "materialize-css": "^1.0.0",
+    "paginationjs": "^2.6.0",
+    "sass": "^1.62.1",
     "vue": "^3.3.2",
     "vue-router": "^4.2.0"
   },
