@@ -1,6 +1,5 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <script>
@@ -8,19 +7,19 @@ import HelloWorld from './components/HelloWorld.vue'
 export default {
   data() {
     return {
-      
+
     }
   },
   computed: {
-    
+
   },
   methods: {
-    
+
   },
   mounted() {
     /*window.addEventListener('hashchange', () => {
-		  this.currentPath = window.location.hash
-		})*/
+      this.currentPath = window.location.hash
+    })*/
   }
 }
 </script>
@@ -51,9 +50,6 @@ export default {
       </div>
     </div>
   </div>
-  
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

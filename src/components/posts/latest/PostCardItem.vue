@@ -43,8 +43,10 @@ defineProps({
   position: relative;
   display: inline-block;
   font-size: 0;
+
   .image {
-    display: block; /* Remove any vertical alignment */
+    display: block;
+    /* Remove any vertical alignment */
     width: 100%;
     height: auto;
   }
@@ -97,7 +99,7 @@ defineProps({
     left: 50%;
     color: white;
     text-align: center;
-    
+
 
     box-sizing: border-box;
 
@@ -127,14 +129,15 @@ defineProps({
       transform: translateX(-50%) translateY(0%) scaleY(100%);
     }
   }
-  
-  transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+  transition: background-color 0.2s ease-in-out,
+  box-shadow 0.2s ease-in-out;
 
   @media only screen and (max-width: 992px) {
     background-color: rgb(248, 248, 248);
     box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
     cursor: pointer;
-    
+
     .card-content {
       background-color: rgba(0, 0, 0, 0.322);
     }
@@ -147,5 +150,4 @@ defineProps({
       transform: translateX(-50%) translateY(0%) scaleY(100%);
     }
   }
-}
-</style>
+}</style>

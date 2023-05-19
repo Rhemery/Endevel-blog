@@ -7,7 +7,7 @@ import * as Utils from '@js/utils.js'
 
 <script>
 export default {
-  name: 'Post',
+  name: 'PostView',
   components: {
   },
   props: [],

@@ -21,6 +21,8 @@ defineProps({
 </script>
 
 <script>
+/*global M*/
+
 export default {
   data() {
     return {
@@ -57,7 +59,7 @@ export default {
   },
   mounted() {
     let elemet = document.getElementById(this.add_tag_modal_id);
-    this.modal_instance = M.Modal.init(elemet, {onCloseStart: () => { Api.update_post_tags(this.post); }});
+    this.modal_instance = M.Modal.init(elemet, { onCloseStart: () => { Api.update_post_tags(this.post); } });
 
     this.available_tags = Object.keys(this.blog_tags_names).filter(item => !this.post.tags.includes(parseInt(item)));
   }
@@ -67,7 +69,7 @@ export default {
 
 <template>
   <div class="items">
-    <TagItem v-for="tag_id in post.tags">
+    <TagItem v-for="tag_id in post.tags" :key="tag_id">
       <template #name>{{ blog_tags_names[tag_id] }}</template>
     </TagItem>
     <TagItem class="add-tag" @click="show_add_tag_modal">
@@ -78,7 +80,8 @@ export default {
   <div :id="add_tag_modal_id" class="modal">
     <div class="modal-content">
       <h4>Přidat tag</h4>
-      <TagItem v-for="tag in blog_tags" :class="post.id ? post.tags.includes(tag.id) ? 'active' : '' : ''" @click="toggle_tag(tag.id)">
+      <TagItem v-for="tag in blog_tags" :key="tag.id" :class="post.id ? post.tags.includes(tag.id) ? 'active' : '' : ''"
+        @click="toggle_tag(tag.id)">
         <template #name>{{ tag.name }}</template>
       </TagItem>
     </div>

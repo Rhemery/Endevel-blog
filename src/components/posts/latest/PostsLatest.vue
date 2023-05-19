@@ -38,7 +38,7 @@ export default {
 
 <template>
   <div class="row">
-    <div v-for="post in posts">
+    <div v-for="post in posts" :key="post.id">
       <div class="col s12 l4">
         <PostCardItem :post="post" :blog_tags="blog_tags" :blog_tags_names="blog_tags_names">
           <template #title>{{ post.title }}</template>
@@ -50,7 +50,6 @@ export default {
       </div>
     </div>
   </div>
-  
 </template>
 
 <style scoped lang="scss">

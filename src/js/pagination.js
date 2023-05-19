@@ -5,7 +5,7 @@ export function init(per_page, filter_tags, page = get_page()) {
   let pages = Math.ceil(items.length / per_page);
   let pagination = document.querySelector('#pagination');
 
-  if(page > pages) {
+  if (page > pages) {
     page = pages;
   }
 
@@ -62,7 +62,7 @@ export function init(per_page, filter_tags, page = get_page()) {
   chevron_right.appendChild(chevron_right_link);
   pagination.appendChild(chevron_right);
 
-  for (var i = 0; i < items.length; i++) {
+  for (let i = 0; i < items.length; i++) {
     if (i >= (page - 1) * per_page && i < page * per_page) {
       items[i].classList.remove('hide-page');
     }
@@ -74,14 +74,14 @@ export function init(per_page, filter_tags, page = get_page()) {
 
 export function filter(tags, posts) {
   let items = document.querySelectorAll('#items .post-item');
-  if(tags.length == 0) {
+  if (tags.length == 0) {
     for (var i = 0; i < items.length; i++) {
       items[i].classList.remove('hide');
     }
     return;
   }
 
-  for (var i = 0; i < items.length; i++) {
+  for (let i = 0; i < items.length; i++) {
     let item = items[i];
     let item_tags = posts[i].tags;
     let display = false;
@@ -103,21 +103,18 @@ export function filter(tags, posts) {
   }
 }
 
-function get_query(query)
-{
+function get_query(query) {
   const current_url = window.location.search;
   const url_params = new URLSearchParams(current_url);
   return url_params.get(query);
 }
 
-export function get_page()
-{
+export function get_page() {
   const query = get_query('page');
   return query ? parseInt(query) : 1;
 }
 
-export function get_filter()
-{
+export function get_filter() {
   const query = get_query('tags');
   return query ? query.split(',') : [];
 }

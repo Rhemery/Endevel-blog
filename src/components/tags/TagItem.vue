@@ -19,6 +19,7 @@
   &.edit {
     border: 2px solid #039be5;
     background-color: rgba(103, 250, 255, 0.329);
+
     &:hover {
       background-color: rgba(103, 250, 255, 0.74);
     }
@@ -31,7 +32,7 @@
   }
 }
 
-.filter > .item {
+.filter>.item {
   &:hover {
     color: rgb(0, 0, 0);
     background-color: rgb(240, 240, 240);
@@ -40,7 +41,7 @@
   }
 }
 
-.items > .item.add-tag {
+.items>.item.add-tag {
   &:hover {
     color: rgb(0, 0, 0);
     background-color: rgb(240, 240, 240);
@@ -49,7 +50,7 @@
   }
 }
 
-.modal-content > .item {
+.modal-content>.item {
   &:hover {
     color: rgb(0, 0, 0);
     background-color: rgb(240, 240, 240);
@@ -58,11 +59,11 @@
   }
 }
 
-.tags.no-add > .items > .item.add-tag {
+.tags.no-add>.items>.item.add-tag {
   display: none;
 }
 
-.filter > .item {
+.filter>.item {
   &.delete {
     color: rgb(0, 0, 0);
     border: 1px solid rgb(255, 0, 0);

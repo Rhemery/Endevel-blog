@@ -1,5 +1,4 @@
 <script setup>
-import TagItem from '@components/tags/TagItem.vue'
 import TagFilter from '@components/tags/Filter.vue'
 import PostItem from '@components/posts/PostItem.vue'
 import * as Api from '@js/api.js'
@@ -9,7 +8,7 @@ import * as Pagination from '@js/pagination.js'
 
 <script>
 export default {
-  name: 'Posts',
+  name: 'PostsView',
   components: {
   },
   props: [],
@@ -37,36 +36,10 @@ export default {
       }
 
       Pagination.filter(this.filter_tags, this.posts);
-      Pagination.init(2, this.filter_tags);
-      this.$nextTick(() => {
-        //Pagination.init(2, this.filter_tags);
-        //this.bind_routes();
-      });
+      Pagination.init(5, this.filter_tags);
 
       this.$router.push({ path: '/posts', query: { page: Pagination.get_page(), tags: this.filter_tags.join(',') } });
-
-      /*this.$router.push({ path: '/posts', query: { page: Pagination.current_page(), tags: this.filter_tags.join(',') } });
-      Pagination.filter(this.filter_tags);
-      this.$nextTick(() => {
-        Pagination.init(2, this.filter_tags);
-        this.bind_routes();
-      });*/
     },
-
-    /*bind_routes() {
-      let pagination_buttons = document.querySelectorAll(".pagination > li:not(.disabled) > div");
-      for (let i = 0; i < pagination_buttons.length; i++) {
-        pagination_buttons[i].addEventListener("click", (e) => {
-          let href = e.target.href ? e.target.href : e.target.parentElement.href;
-          const currentUrl = href;
-          const urlParams = new URLSearchParams(currentUrl);
-          const parameterValue = urlParams.get('page');
-          this.$router.push({ path: '/posts', query: { page: parameterValue, tags: this.filter_tags.join(',') } });
-          Pagination.init(2, this.filter_tags, parseInt(parameterValue));
-          this.bind_routes();
-        });
-      }
-    },*/
 
     async fetch_data() {
       await Api.get("tag").then((data) => {
@@ -84,12 +57,11 @@ export default {
             this.filter_tags[i] = parseInt(this.filter_tags[i]);
           }
           Pagination.filter(this.filter_tags, this.posts);
-          Pagination.init(2, this.filter_tags);
-          //this.bind_routes();
+          Pagination.init(5, this.filter_tags);
         });
       });
     },
-    
+
   },
   mounted() {
     this.fetch_data();
@@ -100,7 +72,7 @@ export default {
 <template>
   <TagFilter :toggle_filter="toggle_filter" :blog_tags="blog_tags"></TagFilter>
   <div id="items">
-    <div v-for="post in posts" class="post-item">
+    <div v-for="post in posts" :key="post.id" class="post-item">
       <PostItem :post="post" :blog_tags="blog_tags" :blog_tags_names="blog_tags_names">
         <template #title>{{ post.title }}</template>
         <template #detail>{{ post.detail }}</template>

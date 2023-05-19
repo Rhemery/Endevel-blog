@@ -24,12 +24,14 @@ $button-disabled-background: rgb(85, 85, 85) !default;
 
   li.active {
     color: #ffffff;
+
     &:hover {
       background-color: #000000;
       cursor: pointer;
     }
   }
-  li > a {
+
+  li>a {
     display: inline-block;
     font-size: 1.2rem;
     padding: 0 10px;
@@ -41,7 +43,7 @@ $button-disabled-background: rgb(85, 85, 85) !default;
     cursor: pointer;
   }
 
-  li:not(.active) > a:hover > i {
+  li:not(.active)>a:hover>i {
     background-color: #ffffff00;
   }
 }

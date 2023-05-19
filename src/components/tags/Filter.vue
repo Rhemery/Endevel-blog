@@ -16,7 +16,10 @@ defineProps({
 </script>
 
 <script>
+/*global M*/
+
 export default {
+  name: "FilterComponent",
   data() {
     return {
       create_tag_modal_instance: null,
@@ -26,8 +29,8 @@ export default {
   methods: {
     edit_tags() {
       let tag_names = document.getElementsByClassName("tag_name_input");
-      for(let i = 0; i < tag_names.length; i++) {
-        if(tag_names[i].value != this.blog_tags[i].name) {
+      for (let i = 0; i < tag_names.length; i++) {
+        if (tag_names[i].value != this.blog_tags[i].name) {
           Api.update_tag(this.blog_tags[i].id, tag_names[i].value);
         }
       }
@@ -44,7 +47,7 @@ export default {
 <template>
   <div class="items">
     <div class="filter" style="margin-bottom: 1rem;">
-      <TagItem v-for="tag in blog_tags" :tag-id="tag.id" @click="toggle_filter(tag.id)">
+      <TagItem v-for="tag in blog_tags" :key="tag.id" :tag-id="tag.id" @click="toggle_filter(tag.id)">
         <template #name>{{ tag.name }}</template>
       </TagItem>
       <TagItem class="edit" @click="create_tag_modal_instance.open()">
@@ -56,7 +59,7 @@ export default {
   <div id="create_tag_modal" class="modal">
     <div class="modal-content">
       <h4>Upravit tagy</h4>
-      <div v-for="tag in blog_tags" class="row">
+      <div v-for="tag in blog_tags" :key="tag.id" class="row">
         <div class="input-field col s6">
           <input :id="'tag_name_' + tag.id" class="tag_name_input" type="text" :value="tag.name">
         </div>

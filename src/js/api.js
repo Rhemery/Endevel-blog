@@ -17,7 +17,7 @@ export async function update_tag(id, name) {
     if (response.ok) {
       location.reload();
     }
-      else {
+    else {
       response.text().then((text) => {
         throw Error(text);
       });
