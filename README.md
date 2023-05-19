@@ -33,3 +33,9 @@ npm run build
 ```sh
 npm run lint
 ```
+
+### Create .env file
+
+```
+VITE_API_URL="https://endevel-task.doc.endevel.cz/"
+```
