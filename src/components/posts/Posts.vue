@@ -20,7 +20,9 @@ export default {
       blog_tags_ids: {},
       filter_tags: [],
 
-      previousLocation: window.location
+      previousLocation: window.location,
+
+      errors: []
     }
   },
   methods: {
@@ -42,24 +44,32 @@ export default {
     },
 
     async fetch_data() {
-      await Api.get("tag").then((data) => {
-        this.blog_tags = data;
-        this.blog_tags_names = Utils.array_to_object(data);
-      });
-
-      await Api.get("blog").then((data) => {
-        this.posts = data;
-        this.$nextTick(() => {
-          this.filter_tags = Pagination.get_filter();
-          for (let i = 0; i < this.filter_tags.length; i++) {
-            let elemet = document.querySelector("[tag-id='" + this.filter_tags[i] + "']");
-            elemet.classList.add("active");
-            this.filter_tags[i] = parseInt(this.filter_tags[i]);
-          }
-          Pagination.filter(this.filter_tags, this.posts);
-          Pagination.init(5, this.filter_tags);
+      await Api.get("tag")
+        .then((data) => {
+          this.blog_tags = data;
+          this.blog_tags_names = Utils.array_to_object(data);
+        })
+        .catch((error) => {
+          this.errors.push(error);
         });
-      });
+
+      await Api.get("blog")
+        .then((data) => {
+          this.posts = data;
+          this.$nextTick(() => {
+            this.filter_tags = Pagination.get_filter();
+            for (let i = 0; i < this.filter_tags.length; i++) {
+              let elemet = document.querySelector("[tag-id='" + this.filter_tags[i] + "']");
+              elemet.classList.add("active");
+              this.filter_tags[i] = parseInt(this.filter_tags[i]);
+            }
+            Pagination.filter(this.filter_tags, this.posts);
+            Pagination.init(5, this.filter_tags);
+          });
+        })
+        .catch((error) => {
+          this.errors.push(error);
+        });
     },
 
   },
@@ -70,21 +80,25 @@ export default {
 </script>
 
 <template>
-  <TagFilter :toggle_filter="toggle_filter" :blog_tags="blog_tags"></TagFilter>
-  <div id="items">
-    <div v-for="post in posts" :key="post.id" class="post-item">
-      <PostItem :post="post" :blog_tags="blog_tags" :blog_tags_names="blog_tags_names">
-        <template #title>{{ post.title }}</template>
-        <template #detail>{{ post.detail }}</template>
-        <template #thumbnail>
-          <img class="thumbnail" :src="post.thumbnail" alt="" loading="lazy">
-        </template>
-      </PostItem>
+  <div v-if="errors.length == 0">
+    <TagFilter :toggle_filter="toggle_filter" :blog_tags="blog_tags"></TagFilter>
+    <div id="items">
+      <div v-for="post in posts" :key="post.id" class="post item">
+        <PostItem :post="post" :blog_tags="blog_tags" :blog_tags_names="blog_tags_names">
+          <template #title>{{ post.title }}</template>
+          <template #detail>{{ post.detail }}</template>
+          <template #thumbnail>
+            <img class="thumbnail" :src="post.thumbnail" alt="" loading="lazy">
+          </template>
+        </PostItem>
+      </div>
+      <div v-if="posts.length == 0">
+        <div class="loader"></div>
+      </div>
     </div>
-    <div v-if="posts.length == 0">
-      <div class="loader"></div>
-    </div>
-
+  </div>
+  <div v-if="errors.length > 0">
+    Při načítání dat došlo k chybě.
   </div>
   <ul id="pagination" class="pagination">
   </ul>

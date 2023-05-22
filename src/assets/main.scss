@@ -1,16 +1,17 @@
 @import './base.css';
 @import "materialize-css/sass/components/color-variables";
-$primary-color: black !default;
-$secondary-color: rgb(22, 22, 22) !default;
-$primary-link-color: rgb(64, 54, 99) !default;
-$secondary-link-color: rgba(64, 54, 99, 0.199) !default;
-$primary-text-color: white !default;
-$primary-text-color-disabled: rgb(77, 77, 77) !default;
-$primary-border-color: rgb(97, 97, 97) !default;
-$button-disabled-color: rgb(0, 0, 0) !default;
-$button-disabled-background: rgb(85, 85, 85) !default;
+$primary-text-color: rgb(255, 255, 255) !default;
+$primary-background-color: rgb(255, 255, 255) !default;
+$secondary-background-color: rgb(0, 0, 0) !default;
 @import 'materialize-css/sass/materialize';
 
+body {
+  background-color: $primary-background-color;
+}
+
+.nav-extended {
+  background-color: $secondary-background-color;
+}
 
 .card {
   border-radius: 8px;
@@ -23,10 +24,11 @@ $button-disabled-background: rgb(85, 85, 85) !default;
   margin-top: 2rem;
 
   li.active {
-    color: #ffffff;
+    background-color: $secondary-background-color;
+    color: $primary-text-color;
 
     &:hover {
-      background-color: #000000;
+      background-color: #353535;
       cursor: pointer;
     }
   }

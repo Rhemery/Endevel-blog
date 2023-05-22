@@ -59,7 +59,13 @@ export default {
   },
   mounted() {
     let elemet = document.getElementById(this.add_tag_modal_id);
-    this.modal_instance = M.Modal.init(elemet, { onCloseStart: () => { Api.update_post_tags(this.post); } });
+    this.modal_instance = M.Modal.init(elemet, {
+      onCloseStart: () => {
+        Api.update_post_tags(this.post).catch((error) => {
+          M.toast({html: 'Úprava byla neúspěšná a nebyla uložena.'})
+        });
+      }
+    });
 
     this.available_tags = Object.keys(this.blog_tags_names).filter(item => !this.post.tags.includes(parseInt(item)));
   }
@@ -68,7 +74,7 @@ export default {
 
 
 <template>
-  <div class="items">
+  <div class="tags">
     <TagItem v-for="tag_id in post.tags" :key="tag_id">
       <template #name>{{ blog_tags_names[tag_id] }}</template>
     </TagItem>

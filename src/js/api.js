@@ -3,30 +3,34 @@ export async function get(path) {
     .then(response => response.json())
     .then((data) => {
       return data;
+    })
+    .catch((error) => {
+      throw Error(error);
     });
 }
 
 export async function update_tag(id, name) {
-  return await fetch(import.meta.env.VITE_API_URL + 'tag/' + id, {
+  return await fetch(import.meta.env.VITE_API_URL + 'tadg/' + id, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({ name: name })
-  }).then((response) => {
-    if (response.ok) {
+  }).then(response => response.json())
+    .then((data) => {
       location.reload();
-    }
-    else {
-      response.text().then((text) => {
-        throw Error(text);
-      });
-    }
-  })
+    })
+    .catch((error) => {
+      throw Error(error);
+    });
 }
 
 export async function update_post_tags(post) {
-  let post_detail = await get("blog/" + post.id);
+  let post_detail = await get("blog/" + post.id)
+    .catch((error) => {
+      throw Error(error);
+    });
+
   post_detail.tags = post.tags;
   delete post_detail.image;
   delete post_detail.thumbnail;
@@ -36,13 +40,8 @@ export async function update_post_tags(post) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(post_detail)
-  })
-    .then((response) => {
-      if (!response.ok) {
-        response.text().then((text) => {
-          throw Error(text);
-        });
-      }
-    })
-
+  }).then(response => response.json())
+    .catch((error) => {
+      throw Error(error);
+    });
 }

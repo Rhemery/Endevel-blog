@@ -16,18 +16,28 @@ export default {
       posts: [],
       blog_tags: [],
       blog_tags_names: {},
+
+      errors: []
     }
   },
   methods: {
     async fetch_data() {
-      await Api.get("tag").then((data) => {
-        this.blog_tags = data;
-        this.blog_tags_names = Utils.array_to_object(data);
-      });
+      await Api.get("tag")
+        .then((data) => {
+          this.blog_tags = data;
+          this.blog_tags_names = Utils.array_to_object(data);
+        })
+        .catch((error) => {
+          this.errors.push(error);
+        });
 
-      await Api.get("").then((data) => {
-        this.posts = data;
-      });
+      await Api.get("")
+        .then((data) => {
+          this.posts = data;
+        })
+        .catch((error) => {
+          this.errors.push(error);
+        });
     },
   },
   mounted() {
@@ -37,7 +47,7 @@ export default {
 </script>
 
 <template>
-  <div class="row">
+  <div v-if="errors.length == 0" class="row">
     <div v-for="post in posts" :key="post.id">
       <div class="col s12 l4">
         <PostCardItem :post="post" :blog_tags="blog_tags" :blog_tags_names="blog_tags_names">
@@ -49,6 +59,9 @@ export default {
         </PostCardItem>
       </div>
     </div>
+  </div>
+  <div v-if="errors.length > 0" class="center-align">
+    Při načítání dat došlo k chybě.
   </div>
 </template>
 

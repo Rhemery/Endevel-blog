@@ -1,9 +1,11 @@
+const PAGINATION_ITEMS_SELECTOR = '#items .item:not(.hide)';
+const PAGINATION_FILTER_SELECTOR = '#items .item';
+const PAGINATION_PAGES_SELECTOR = '#pagination';
+
 export function init(per_page, filter_tags, page = get_page()) {
-  console.log('init pagination');
-  console.log('page: ' + page);
-  let items = document.querySelectorAll('#items .post-item:not(.hide)');
+  let items = document.querySelectorAll(PAGINATION_ITEMS_SELECTOR);
   let pages = Math.ceil(items.length / per_page);
-  let pagination = document.querySelector('#pagination');
+  let pagination = document.querySelector(PAGINATION_PAGES_SELECTOR);
 
   if (page > pages) {
     page = pages;
@@ -73,7 +75,7 @@ export function init(per_page, filter_tags, page = get_page()) {
 }
 
 export function filter(tags, posts) {
-  let items = document.querySelectorAll('#items .post-item');
+  let items = document.querySelectorAll(PAGINATION_FILTER_SELECTOR);
   if (tags.length == 0) {
     for (var i = 0; i < items.length; i++) {
       items[i].classList.remove('hide');

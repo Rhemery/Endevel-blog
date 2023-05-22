@@ -31,7 +31,10 @@ export default {
       let tag_names = document.getElementsByClassName("tag_name_input");
       for (let i = 0; i < tag_names.length; i++) {
         if (tag_names[i].value != this.blog_tags[i].name) {
-          Api.update_tag(this.blog_tags[i].id, tag_names[i].value);
+          console.log(tag_names[i].value);  
+          Api.update_tag(this.blog_tags[i].id, tag_names[i].value).catch((error) => {
+            M.toast({html: 'Úprava byla neúspěšná a nebyla uložena.'})
+          });
         }
       }
       //Api.post_tag(tag_id, name);
@@ -45,7 +48,7 @@ export default {
 </script>
 
 <template>
-  <div class="items">
+  <div class="tags">
     <div class="filter" style="margin-bottom: 1rem;">
       <TagItem v-for="tag in blog_tags" :key="tag.id" :tag-id="tag.id" @click="toggle_filter(tag.id)">
         <template #name>{{ tag.name }}</template>

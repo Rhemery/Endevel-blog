@@ -1,11 +1,11 @@
 <template>
-  <div class="item">
+  <div class="tag">
     <slot name="name"></slot>
   </div>
 </template>
 
 <style scoped lang="scss">
-.item {
+.tag {
   display: inline-block;
   font-size: 0.75rem;
   padding: 0.25rem 0.75rem;
@@ -13,8 +13,18 @@
   border: 1px solid rgba(0, 0, 0, 0.445);
   margin: 0.25rem;
   margin-top: 1rem;
+  cursor: default;
 
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+  &.add-tag {
+    border: 2px solid #039be5;
+    background-color: rgba(103, 250, 255, 0.329);
+
+    &:hover {
+      background-color: rgba(103, 250, 255, 0.74);
+    }
+  }
 
   &.edit {
     border: 2px solid #039be5;
@@ -32,7 +42,7 @@
   }
 }
 
-.filter>.item {
+.filter>.tag {
   &:hover {
     color: rgb(0, 0, 0);
     background-color: rgb(240, 240, 240);
@@ -41,7 +51,7 @@
   }
 }
 
-.items>.item.add-tag {
+.tags>.tag.add-tag {
   &:hover {
     color: rgb(0, 0, 0);
     background-color: rgb(240, 240, 240);
@@ -50,7 +60,7 @@
   }
 }
 
-.modal-content>.item {
+.modal-content>.tag {
   &:hover {
     color: rgb(0, 0, 0);
     background-color: rgb(240, 240, 240);
@@ -59,11 +69,11 @@
   }
 }
 
-.tags.no-add>.items>.item.add-tag {
+.tags.no-add>.tags>.tag.add-tag {
   display: none;
 }
 
-.filter>.item {
+.filter>.tag {
   &.delete {
     color: rgb(0, 0, 0);
     border: 1px solid rgb(255, 0, 0);
