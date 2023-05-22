@@ -61,7 +61,7 @@ export default {
     let elemet = document.getElementById(this.add_tag_modal_id);
     this.modal_instance = M.Modal.init(elemet, {
       onCloseStart: () => {
-        Api.update_post_tags(this.post).catch((error) => {
+        Api.update_post_tags(this.post).catch(() => {
           M.toast({html: 'Úprava byla neúspěšná a nebyla uložena.'})
         });
       }

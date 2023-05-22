@@ -17,7 +17,7 @@ export async function update_tag(id, name) {
     },
     body: JSON.stringify({ name: name })
   }).then(response => response.json())
-    .then((data) => {
+    .then(() => {
       location.reload();
     })
     .catch((error) => {

@@ -32,12 +32,11 @@ export default {
       for (let i = 0; i < tag_names.length; i++) {
         if (tag_names[i].value != this.blog_tags[i].name) {
           console.log(tag_names[i].value);  
-          Api.update_tag(this.blog_tags[i].id, tag_names[i].value).catch((error) => {
+          Api.update_tag(this.blog_tags[i].id, tag_names[i].value).catch(() => {
             M.toast({html: 'Úprava byla neúspěšná a nebyla uložena.'})
           });
         }
       }
-      //Api.post_tag(tag_id, name);
     }
   },
   mounted() {
