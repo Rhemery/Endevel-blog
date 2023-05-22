@@ -10,7 +10,7 @@ export async function get(path) {
 }
 
 export async function update_tag(id, name) {
-  return await fetch(import.meta.env.VITE_API_URL + 'tadg/' + id, {
+  return await fetch(import.meta.env.VITE_API_URL + 'tag/' + id, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
