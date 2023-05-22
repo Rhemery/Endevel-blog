@@ -92,7 +92,7 @@ export default {
       </TagItem>
     </div>
     <div class="modal-footer">
-      <div class="waves-effect waves-green btn-flat" @click="close_add_tag_modal">Agree</div>
+      <div class="waves-effect waves-green btn-flat" @click="close_add_tag_modal">Uložit</div>
     </div>
   </div>
 </template>

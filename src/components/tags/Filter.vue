@@ -69,8 +69,8 @@ export default {
       </div>
     </div>
     <div class="modal-footer">
-      <div class="waves-effect waves-green btn-flat" @click="edit_tags">Save</div>
-      <div class="waves-effect waves-green btn-flat" @click="create_tag_modal_instance.close()">Cancel</div>
+      <div class="waves-effect waves-green btn-flat" @click="edit_tags">Uložit</div>
+      <div class="waves-effect waves-green btn-flat" @click="create_tag_modal_instance.close()">Zrušit</div>
     </div>
   </div>
 </template>
